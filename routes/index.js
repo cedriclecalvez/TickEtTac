@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var journeyModel=require('../models/journey')
+var usersModel=require('../models/users')
 
 var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"]
 var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
@@ -14,68 +15,94 @@ router.get('/homePage', function(req, res, next) {
 
 
 
-/* GET home page. */
+/* GET login page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('login', { title: 'Je suis dans ma page Login' });
 });
 
-/* Test navbar */
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+/* GET Home page. */
+router.get('/homePage', function(req, res, next) {
+  res.render('homePage', { title: 'Je suis dans la page Home' });
 });
 
-
-// Remplissage de la base de donnée, une fois suffit
-router.get('/save', async function(req, res, next) {
-
-  // How many journeys we want
-  var count = 300
-
-  // Save  ---------------------------------------------------
-    for(var i = 0; i< count; i++){
-
-    departureCity = city[Math.floor(Math.random() * Math.floor(city.length))]
-    arrivalCity = city[Math.floor(Math.random() * Math.floor(city.length))]
-
-    if(departureCity != arrivalCity){
-
-      var newUser = new journeyModel ({
-        departure: departureCity , 
-        arrival: arrivalCity, 
-        date: date[Math.floor(Math.random() * Math.floor(date.length))],
-        departureTime:Math.floor(Math.random() * Math.floor(23)) + ":00",
-        price: Math.floor(Math.random() * Math.floor(125)) + 25,
-      });
-       
-       await newUser.save();
-
-    }
-
-  }
-  res.render('index', { title: 'Express' });
+/* GET basket. */
+router.get('/basket', function(req, res, next) {
+  res.render('basket', { title: 'Je suis dans la page basket' });
 });
 
+/* GET myLastTrip. */
+router.get('/myLastTrip', function(req, res, next) {
+  res.render('myLastTrip', { title: 'Je suis dans la page myLastTrip' });
+});
 
-// Cette route est juste une verification du Save.
-// Vous pouvez choisir de la garder ou la supprimer.
+/* GET result*/
 router.get('/result', function(req, res, next) {
-
-  // Permet de savoir combien de trajets il y a par ville en base
-  for(i=0; i<city.length; i++){
-
-    journeyModel.find( 
-      { departure: city[i] } , //filtre
-  
-      function (err, journey) {
-
-          console.log(`Nombre de trajets au départ de ${journey[0].departure} : `, journey.length);
-      }
-    )
-
-  }
-
-
-  res.render('index', { title: 'Express' });
+  res.render('result', { title: 'Express' });
 });
+
+
+/* POST sign-up  */
+router.post('/sign-up', async function(req, res, next) {
+
+  var searchUser = await usersModel.findOne({
+    email: req.body.email
+  });
+
+  if(!searchUser){
+    
+  var newUser = new usersModel({
+    email:req.body.email,
+    password:req.body.password,
+    firstName:req.body.firstName,
+    lastName:req.body.lastName,
+  })
+
+  var newUserSave = await newUser.save();
+
+  req.session.user = {
+    lastName: newUserSave.lastName,
+    id: newUserSave._id,
+  }
+console.log(req.session.user)
+  res.redirect('/homePage')
+  }else{
+  res.redirect('/homePage');
+}});
+
+/* POST sign-up  */
+router.post('/sign-in', async function(req, res, next) {
+
+  var searchUser = await usersModel.findOne({
+    email: req.body.email,
+    password:req.body.password
+  })
+
+  if(searchUser!= null){
+    req.session.user = {
+      lastname: searchUser.lastname,
+      id: searchUser._id
+    }
+    res.redirect('/homePage')
+  } else {
+    res.render('login', { title: 'Je suis dans la page login' })
+  }
+});
+
+/*POST homePage*/
+router.post("/homePage"), function (req, res, next){
+
+  res.render('result', { title: 'express' })
+};
+
+/*POST result*/
+router.post("/result"), function (req, res, next){
+  res.render('basket', { title: 'express' })
+}
+
+/*POST basket*/
+router.post("/basket"), function (req, res, next){
+  res.render('myLastTrip', { title: 'express' })
+}
+
 
 module.exports = router;
