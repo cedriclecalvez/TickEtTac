@@ -7,6 +7,13 @@ var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lil
 var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 
 
+/* GET home page. */
+router.get('/homePage', function(req, res, next) {
+  
+  res.render('homePage', { title: 'Express' });
+});
+
+
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
@@ -82,23 +89,32 @@ router.post('/sign-in', async function(req, res, next) {
 });
 
 /*POST homePage*/
-router.post("/homePage"), async function (req, res, next){
-var searchTrip= await journeyModel.find()
-for (var i=0; i<searchTrip.length; i++)
-if(searchTrip[i].departiture === req.body.departitureCity && searchTrip[i].arrival === req.body.arrivalCity)
-console.log(searchTrip)
+router.post("/homePage", async function (req, res, next){
   res.render('result', { title: 'express' })
-};
+});
 
 /*POST result*/
-router.post("/result"), function (req, res, next){
-  res.render('basket', { title: 'express' })
+router.post("/result", async function (req, res, next){
+var departure= req.body.departureCity;
+var arrival = req.body.arrivalCity;
+var date = req.body.tripstart;
+var searchTrip = await journeyModel.find({
+  departurebdd:departure,
+  arrivalbdd:arrival,
+  datebdd:date
+});
+if (true){
+  res.render('result',{title: 'express', departurebdd:departure, arrivalbdd:arrival, datebdd:date})
+}else{
+  res.redirect('/error')
 }
+  
+});
 
 /*POST basket*/
-router.post("/basket"), function (req, res, next){
+router.post("/basket", function (req, res, next){
   res.render('myLastTrip', { title: 'express' })
-}
+})
 
 
 module.exports = router;
