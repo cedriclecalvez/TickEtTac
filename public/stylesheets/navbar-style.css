@@ -1,0 +1,22 @@
+html {
+  height: 100%;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d0e4f7+0,d0e4f7+20,73b1e7+58,0a77d5+100,539fe1+100,0a77d5+101 */
+background: rgb(208,228,247); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(208,228,247,1) 0%, rgba(208,228,247,1) 20%, rgba(115,177,231,1) 58%, rgba(10,119,213,1) 100%, rgba(83,159,225,1) 100%, rgba(10,119,213,1) 101%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(208,228,247,1) 0%,rgba(208,228,247,1) 20%,rgba(115,177,231,1) 58%,rgba(10,119,213,1) 100%,rgba(83,159,225,1) 100%,rgba(10,119,213,1) 101%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(208,228,247,1) 0%,rgba(208,228,247,1) 20%,rgba(115,177,231,1) 58%,rgba(10,119,213,1) 100%,rgba(83,159,225,1) 100%,rgba(10,119,213,1) 101%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#0a77d5',GradientType=0 ); /* IE6-9 */
+}
+
+
+.nav {
+  margin-left: 50px;
+}
