@@ -82,8 +82,11 @@ router.post('/sign-in', async function(req, res, next) {
 });
 
 /*POST homePage*/
-router.post("/homePage"), function (req, res, next){
-
+router.post("/homePage"), async function (req, res, next){
+var searchTrip= await journeyModel.find()
+for (var i=0; i<searchTrip.length; i++)
+if(searchTrip[i].departiture === req.body.departitureCity && searchTrip[i].arrival === req.body.arrivalCity)
+console.log(searchTrip)
   res.render('result', { title: 'express' })
 };
 
