@@ -15,8 +15,15 @@ h1{
 #search{
   justify-content: center;
   padding-top: 50px;
+  
 }
 
-.form-control{
-  width: 300px;
+/* result */
+
+.btn{
+  margin-left: 30px;
+}
+
+.card{
+  margin-bottom: 15px;
 }

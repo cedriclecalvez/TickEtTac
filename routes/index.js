@@ -40,7 +40,6 @@ router.get('/result', function(req, res, next) {
   res.render('result', { title: 'Express' });
 });
 
-
 /* POST sign-up  */
 router.post('/sign-up', async function(req, res, next) {
 
