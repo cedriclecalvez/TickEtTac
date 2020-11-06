@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><%= title %></title>
+    <title>home Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/homePage-style.css'/>
 </head>
@@ -18,7 +18,7 @@
     </div>
     <div class="container">
         <div class="row">            
-            <form action="/homePage" method="POST">
+            <form action="/result" method="POST">
                 <div id="search" class="row">
                     <div class="col-12 col-sm-3">
                         <input type="text" class="form-control" placeholder="From: Paris, Marseille..." name="departureCity">
@@ -27,7 +27,7 @@
                         <input type="text" class="form-control" placeholder="From: Lille, Nantes..." name="arrivalCity">
                     </div>
                     <div class="col-12 col-sm-3">
-                        <input class="form-control" type="date" id="start" name="trip-start"
+                        <input class="form-control" type="date" id="start" name="tripstart"
                         value="2020-11-05"
                         min="2020-11-05" max="2021-11-05">
                     </div>
