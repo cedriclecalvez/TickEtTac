@@ -40,7 +40,6 @@ router.get('/result', function(req, res, next) {
   res.render('result', { title: 'Express' });
 });
 
-
 /* POST sign-up  */
 router.post('/sign-up', async function(req, res, next) {
 
@@ -89,20 +88,32 @@ router.post('/sign-in', async function(req, res, next) {
 });
 
 /*POST homePage*/
-router.post("/homePage", function (req, res, next){
-
+router.post("/homePage", async function (req, res, next){
   res.render('result', { title: 'express' })
 });
 
 /*POST result*/
-router.post("/result", function (req, res, next){
-  res.render('basket', { title: 'express' })
+router.post("/result", async function (req, res, next){
+var departure= req.body.departureCity;
+var arrival = req.body.arrivalCity;
+var date = req.body.tripstart;
+var searchTrip = await journeyModel.find({
+  departurebdd:departure,
+  arrivalbdd:arrival,
+  datebdd:date
+});
+if (true){
+  res.render('result',{title: 'express', departurebdd:departure, arrivalbdd:arrival, datebdd:date})
+}else{
+  res.redirect('/error')
+}
+  
 });
 
 /*POST basket*/
 router.post("/basket", function (req, res, next){
   res.render('myLastTrip', { title: 'express' })
-});
+})
 
 
 module.exports = router;
