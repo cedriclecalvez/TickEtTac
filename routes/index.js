@@ -89,20 +89,20 @@ router.post('/sign-in', async function(req, res, next) {
 });
 
 /*POST homePage*/
-router.post("/homePage"), function (req, res, next){
+router.post("/homePage", function (req, res, next){
 
   res.render('result', { title: 'express' })
-};
+});
 
 /*POST result*/
-router.post("/result"), function (req, res, next){
+router.post("/result", function (req, res, next){
   res.render('basket', { title: 'express' })
-}
+});
 
 /*POST basket*/
-router.post("/basket"), function (req, res, next){
+router.post("/basket", function (req, res, next){
   res.render('myLastTrip', { title: 'express' })
-}
+});
 
 
 module.exports = router;
