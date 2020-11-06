@@ -4,7 +4,7 @@
 <head>
     <title>home Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/homePage-style.css'/>
+    <link rel='stylesheet' href='/stylesheets/homePage-result-style.css'/>
 </head>
 
 <body>
@@ -13,32 +13,32 @@
 
     <div class="jumbotron-fluid">
         <div class="container">
-            <h1 class="display-3 text-light">One-way ticket:</h1>
+            <div classe="col-12 offset-3">
+                <h1 class="display-5 text-light">One-way ticket:</h1>
+            </div>
         </div>
     </div>
     <div class="container">
-        <div class="row">            
-            <form action="/result" method="POST">
-                <div id="search" class="row">
-                    <div class="col-12 col-sm-3">
-                        <input type="text" class="form-control" placeholder="From: Paris, Marseille..." name="departureCity">
+            <form action="/homePage" method="POST">
+                <div  class="row ">
+                    <div class="col-12 col-md-3">
+                        <input type="text" class="form-control " placeholder="From: Paris, Marseille..." name="departureCity">
                     </div>
-                    <div class="col-12 col-sm-3">
+                    <div class="col-12 col-md-3">
                         <input type="text" class="form-control" placeholder="From: Lille, Nantes..." name="arrivalCity">
                     </div>
-                    <div class="col-12 col-sm-3">
-                        <input class="form-control" type="date" id="start" name="tripstart"
+                    <div class="col-12 col-md-3">
+                        <input class="form-control" type="date" id="start" name="trip-start"
                         value="2020-11-05"
                         min="2020-11-05" max="2021-11-05">
                     </div>
-                    <div class="col-12 col-sm-3">
+                    <div class="col-12 col-md-3">
                         <div class="input-group-append">
                             <button class="btn btn-danger" type="submit" id="button-addon2">Go</button>
                         </div>
                     </div>
                 </div>
             </form>
-        </div>
     </div>
 
 
