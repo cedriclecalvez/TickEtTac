@@ -98,15 +98,19 @@ router.post("/result", async function (req, res, next){
 var departure= req.body.departureCity;
 var arrival = req.body.arrivalCity;
 var date = req.body.tripstart;
+
+console.log(departure, arrival, date)
 var searchTrip = await journeyModel.find({
-  departurebdd:departure,
-  arrivalbdd:arrival,
-  datebdd:date
+  departure:departure,
+  arrival:arrival,
+  date:date
+  
 });
-if (true){
+console.log(searchTrip)
+if (searchTrip.length!=0){
   res.render('result',{title: 'express', departurebdd:departure, arrivalbdd:arrival, datebdd:date})
 }else{
-  res.redirect('/error')
+  res.redirect('/error', {message:"aucun billets trouvés"});
 }
   
 });
