@@ -12,7 +12,7 @@
   <div class="container">
 
     <h1 class="text-light">My tickets:</h1>
-
+    
     <div class="column">
 
       <table class="table">
@@ -26,31 +26,28 @@
           </tr>
         </thead>
         <tbody>
+          <% for (var i=0; i<billet.length; i++){%>
           <tr>
             <th scope="row">1</th>
-            <td>02/08/2019</td>
-            <td>Paris/Lille</td>
-            <td>15:00 PM</td>
-            <td>93€</td>
+            <td><%=billet[i].departure%>/<%=billet[i].arrival%></td>
+            <td><%=billet[i].date%></td>
+            <td><%=billet[i].time%></td>
+            <td><%=billet[i].price%>€</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>02/08/2019</td>
-            <td>Paris/Bordeaux</td>
-            <td>19:00 PM</td>
-            <td>125€</td>
-          </tr>
+          <%}%>
           <tr class='table-danger'>
             <th scope="row">Total</th>
             <td></td>
             <td></td>
             <td></td>
-            <td>218€</td>
+            <td><%=total%></td>
           </tr>
         </tbody>
       </table>
 
-      <a href="/"><button type="submit" class="btn btn-danger">Confirm</button></a>
+      <!-- <a href="/result" class="btn btn-danger" type="submit" id="button-addon2">Continuer mes achats</a> -->
+
+      <button type="submit" class="btn btn-danger">Confirm</button>
 
     </div>
 

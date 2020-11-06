@@ -11,6 +11,10 @@
     margin-top: 100px;
 }
 
+.back {
+    float: left;
+}
+
 .btn {
     float: right;
 }

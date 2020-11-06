@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><%= title %></title>
+    <title>result</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/homePage-result-style.css'/>
 </head>
@@ -13,52 +13,28 @@
 
     <div class="jumbotron-fluid">
         <div class="container">
-            <p class="display-5 text-light">Tickets available on 05/11</p>
+            <p class="display-5 text-light">Tickets available on <%=datefront%></p>
         </div>
     </div>
+    <%for(var i=0; i<searchTrip.length; i++){%>
     <div class="container">
         <div class="row ">     
             <div class="card" style="width: 75%;">
                 <div class="card-body d-flex justify-content-between">
-                    <h5 class="card-title" name="">paris/lille</h5>
-                    <p class="card-text" name="">train departure at 15:00pm</p>
+                    <h5 class="card-title" ><%=searchTrip[i].departure%>/<%=searchTrip[i].arrival%></h5>
+                    <p class="card-text" >train departure at <%=searchTrip[i].departureTime%></p>
                     <div class="d-flex justify-content-between">
-                        <p class="card-text" name="">99</p>
+                        <p class="card-text" ><%=searchTrip[i].price%>€</p>
                         <div class="input-group-append">
-                            <button class="btn btn-danger" type="submit" id="button-addon2">Ok</button>
+                            <a href="/basket?departureCity=<%=searchTrip[i].departure%>&arrivalCity=<%=searchTrip[i].arrival%>&tripStart=<%=searchTrip[i].departureTime%>&date=<%=datefront%>&price=<%=searchTrip[i].price%>" class="btn btn-danger" type="submit" id="button-addon2">Ok</a>
                         </div>
                     </div>
                 </div>
             </div>     
         </div>
-    </div>
-
-    <div class="container">
-        <div class="row ">     
-            <div class="card" style="width: 75%;">
-                <div class="card-body d-flex justify-content-between">
-                    <h5 class="card-title" name="">paris/lille</h5>
-                    <p class="card-text" name="">train departure at 15:00pm</p>
-                    <div class="d-flex justify-content-between">
-                        <p class="card-text" name="">99</p>
-                        <div class="input-group-append">
-                            <button class="btn btn-danger" type="submit" id="button-addon2">Ok</button>
-                        </div>
-                    </div>
-                </div>
-            </div>     
-        </div>
-    </div>
+      </div>
+      <%}%>
     
-
-  <!-- <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
-
-<p><%=departurebdd%></p>
-<p><%=arrivalbdd%></p>
-<p><%=datebdd%></p> -->
-
-
     <!--scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

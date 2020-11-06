@@ -27,7 +27,35 @@ router.get('/homePage', function(req, res, next) {
 
 /* GET basket. */
 router.get('/basket', function(req, res, next) {
-  res.render('basket', { title: 'Je suis dans la page basket' });
+  console.log('req.session.billet: ', req.session.billet);
+  if(!req.session.billet){
+
+  req.session.billet=[]
+
+  req.session.billet.push({
+  departure:req.query.departureCity,
+  arrival:req.query.arrivalCity,
+  time:req.query.tripStart,
+  date:req.query.date,
+  price:req.query.price
+})
+}else{
+  req.session.billet.push({
+    departure:req.query.departureCity,
+    arrival:req.query.arrivalCity,
+    time:req.query.tripStart,
+    date:req.query.date,
+    price:req.query.price
+  })
+} 
+var total = 0;
+for (var i=0; i<req.session.billet.length; i++){
+  total += parseInt(req.session.billet[i].price);
+}
+console.log("test!!!!!!!!!!:",req.session.billet)
+console.log("total:",total)
+// console.log("test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",billet);
+  res.render('basket', { title: 'Je suis dans la page basket', billet:req.session.billet, total});
 });
 
 /* GET myLastTrip. */
@@ -37,7 +65,10 @@ router.get('/myLastTrip', function(req, res, next) {
 
 /* GET result*/
 router.get('/result', function(req, res, next) {
-  res.render('result', { title: 'Express' });
+
+var searchTrip = []
+
+  res.render('result', {searchTrip});
 });
 
 /* POST sign-up  */
@@ -62,13 +93,13 @@ router.post('/sign-up', async function(req, res, next) {
     lastName: newUserSave.lastName,
     id: newUserSave._id,
   }
-console.log(req.session.user)
+
   res.redirect('/homePage')
   }else{
-  res.redirect('/homePage');
+  res.redirect('/');
 }});
 
-/* POST sign-up  */
+/* POST sign-in  */
 router.post('/sign-in', async function(req, res, next) {
 
   var searchUser = await usersModel.findOne({
@@ -94,30 +125,31 @@ router.post("/homePage", async function (req, res, next){
 
 /*POST result*/
 router.post("/result", async function (req, res, next){
-var departure= req.body.departureCity;
-var arrival = req.body.arrivalCity;
-var date = req.body.tripstart;
+var departurefront= req.body.departureCity;
+var arrivalfront = req.body.arrivalCity;
+var datefront = req.body.tripStart;
 
-console.log(departure, arrival, date)
+console.log(departurefront, arrivalfront, datefront)
 var searchTrip = await journeyModel.find({
-  departure:departure,
-  arrival:arrival,
-  date:date
-  
+  departure:departurefront,
+  arrival:arrivalfront,
+  date:datefront
 });
 console.log(searchTrip)
-if (searchTrip.length!=0){
-  res.render('result',{title: 'express', departurebdd:departure, arrivalbdd:arrival, datebdd:date})
+// console.log(searchTrip.departureTime)
+if (searchTrip.length>0){
+  console.log('On est passé');
+  res.render('result',{title: 'express', searchTrip, datefront})
 }else{
-  res.redirect('/error', {message:"aucun billets trouvés"});
+  res.redirect('/');
 }
   
 });
 
-/*POST basket*/
-router.post("/basket", function (req, res, next){
-  res.render('myLastTrip', { title: 'express' })
-})
+// /*POST basket*/
+// router.post("/basket", function (req, res, next){
+  // res.render('myLastTrip', { title: 'express' })
+// })
 
 
 module.exports = router;

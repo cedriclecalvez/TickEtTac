@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="container">
-            <form action="/homePage" method="POST">
+            <form action="/result" method="POST">
                 <div  class="row ">
                     <div class="col-12 col-md-3">
                         <input type="text" class="form-control " placeholder="From: Paris, Marseille..." name="departureCity">
@@ -28,13 +28,13 @@
                         <input type="text" class="form-control" placeholder="From: Lille, Nantes..." name="arrivalCity">
                     </div>
                     <div class="col-12 col-md-3">
-                        <input class="form-control" type="date" id="start" name="trip-start"
+                        <input class="form-control" type="date" id="start" name="tripStart"
                         value="2020-11-05"
                         min="2018-11-05" max="2018-11-30">
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="input-group-append">
-                            <button class="btn btn-danger" type="submit" id="button-addon2">Go</button>
+                            <input class="btn btn-danger" type="submit" id="button-addon2">
                         </div>
                     </div>
                 </div>
