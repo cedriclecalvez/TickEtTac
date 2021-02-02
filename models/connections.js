@@ -6,7 +6,7 @@ var options = {
    
         useUnifiedTopology : true
    }
-   mongoose.connect('mongodb+srv://leila:lacapsule@cluster0.hoxrz.mongodb.net/ticetac?retryWrites=true&w=majority',
+   mongoose.connect('mongodb+srv://cedric:cedric@cluster0.udb80.mongodb.net/Ticetac?retryWrites=true&w=majority',
     options,    
     function(err) {
      console.log(err);
